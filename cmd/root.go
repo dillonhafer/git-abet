@@ -35,8 +35,10 @@ var rootCmd = &cobra.Command{
 			}
 
 			for _, f := range foundFiles {
-				if f != "" && f != file {
-					files = append(files, f)
+				if _, err := os.Stat(f); err == nil {
+					if f != "" && f != file {
+						files = append(files, f)
+					}
 				}
 			}
 		}
